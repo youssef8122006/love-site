@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<html lang="ar">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>صفحة الحب 💖</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      direction: rtl;
+      text-align: center;
+      background: linear-gradient(#ffe6e6, #fff);
+      margin: 0;
+      padding: 20px;
+      overflow-x: hidden;
+    }
+    .counter {
+      font-size: 24px;
+      margin: 20px 0;
+      color: #c0392b;
+    }
+    .image-box {
+      margin: 20px 0;
+    }
+    .image-box img {
+      max-width: 90%;
+      border-radius: 15px;
+    }
+    .image-box p {
+      margin-top: 8px;
+      font-size: 18px;
+      color: #555;
+    }
+    .footer-text {
+      margin-top: 30px;
+      font-size: 18px;
+      color: #222;
+      line-height: 1.8;
+      white-space: pre-line;
+    }
+
+    /* شاشة الباسورد */
+    #passwordScreen {
+      position: fixed;
+      inset: 0;
+      background: #ffe6e6;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      z-index: 9999;
+    }
+    #passwordScreen input {
+      padding: 10px;
+      font-size: 18px;
+      border-radius: 8px;
+      border: 1px solid #ccc;
+      margin-top: 10px;
+      text-align: center;
+    }
+    #passwordScreen button {
+      margin-top: 10px;
+      padding: 8px 16px;
+      font-size: 16px;
+      border: none;
+      border-radius: 8px;
+      background: #e74c3c;
+      color: white;
+      cursor: pointer;
+    }
+
+    /* القلوب */
+    .heart {
+      position: fixed;
+      bottom: -20px;
+      font-size: 20px;
+      animation: floatUp 6s linear infinite;
+      opacity: 0.7;
+    }
+    @keyframes floatUp {
+      0% { transform: translateY(0); opacity: 0.7; }
+      100% { transform: translateY(-110vh); opacity: 0; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- شاشة الباسورد -->
+  <div id="passwordScreen">
+    <h2>ادخل كلمة السر 💖</h2>
+    <input type="password" id="passwordInput" placeholder="Password">
+    <button onclick="checkPassword()">دخول</button>
+    <p id="errorMsg" style="color:red;"></p>
+  </div>
+
+  <!-- محتوى الموقع -->
+  <div id="mainContent" style="display:none;">
+    <h2>العداد</h2>
+    <div class="counter" id="counter">جاري الحساب...</div>
+
+    <div class="image-box">
+      <img src="img1.jpeg" alt="صورة 1">
+      <p>بحبك يا زوزي ❤️</p>
+    </div>
+
+    <div class="image-box">
+      <img src="img2.jpeg" alt="صورة 2">
+      <p>ربنا يخليكي ليا 💕</p>
+    </div>
+
+    <div class="image-box">
+      <img src="img3.jpeg" alt="صورة 3">
+      <p>عايزك على طول معايا 🤍</p>
+    </div>
+
+    <div class="footer-text">
+لو كان العمر يُهدى، لأهديتكِ كل
+ثوانيه، فأنتِ لستِ مجرد
+شخصٍ عابر، بل أنتِ الحياة التي
+رغبتُ فيها دائماً. وجودكِ
+بجانبي هو النور الذي يضيء
+عتمة أيامي، والأمان الذي ألوذ
+به من تعب العالم. أحبكِ فوق
+ما يصفه الكلام، وأعدكِ أن نظل
+معاً، روحاً واحدة لا يفرقها زمن 💖
+    </div>
+  </div>
+
+  <script>
+    // كلمة السر
+    const PASSWORD = "Love";
+
+    function checkPassword() {
+      const input = document.getElementById("passwordInput").value;
+      if (input === PASSWORD) {
+        document.getElementById("passwordScreen").style.display = "none";
+        document.getElementById("mainContent").style.display = "block";
+        updateCounter();
+        startHearts();
+      } else {
+        document.getElementById("errorMsg").innerText = "كلمة السر غلط ❌";
+      }
+    }
+
+    // عداد الأيام من 6 نوفمبر 2025
+    const startDate = new Date("2025-11-06");
+
+    function updateCounter() {
+      const now = new Date();
+      const diff = now - startDate;
+      const days = Math.floor(diff / (1000 * 60 * 60 * 24));
+      document.getElementById("counter").innerText =
+        "مرّ " + days + " يوم منذ هذا التاريخ ❤️";
+    }
+
+    // قلوب متحركة
+    function startHearts() {
+      setInterval(() => {
+        const heart = document.createElement("div");
+        heart.className = "heart";
+        heart.innerText = "❤️";
+        heart.style.left = Math.random() * 100 + "vw";
+        heart.style.fontSize = (15 + Math.random() * 20) + "px";
+        document.body.appendChild(heart);
+
+        setTimeout(() => {
+          heart.remove();
+        }, 6000);
+      }, 500);
+    }
+  </script>
+
+</body>
+</html>
